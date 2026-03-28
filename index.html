@@ -1,68 +1,107 @@
-  
 <!DOCTYPE html>
 <html>
 
 <head>
-
   <title>Yunseo Park | UI Design Programming 1</title>
   <meta charset="utf-8" />
- 
-  <!-- CSS inline -->
-  <style>
-    body {background-color: rgb(229, 245, 250);
-          line-height:100%;}
-
-    p {font-size:25px;
-      text-indent:3%;
-      margin:45px 0px 20px 0px}
-
-    li {line-height:140%;
-        font-size:18px;
-        margin: 0px 0px 0px 35px;}
-  </style>
-
-  <!-- link setting -->
-  <style type="text/css">
-        a:link { color: rgb(0, 0, 0); text-decoration: none;}	
-        a:visited { color: #000000; text-decoration: none;}	
-        a:hover { color: #0c47c7; text-decoration: underline;}
-  </style>
-
+  <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 
 <body>
 
-  <!-- canvas -->
-  <div id="grid" style="margin: 50px 0px 0px 0px">
-    <div id="left-column" class="scroll">  
+<div class="wrap">
 
-      <!-- title -->
-      <h1 style="font-size:60px; font-family:times; font-weight:bolder; text-indent:2%">Yunseo Park</h1>
 
-      <!-- ___________ -->
-      <hr>
+  <!-- background -->
+  <div class="bg back"></div>
+  <div class="bg front"><img src="assets/bgbg.png" style="height: 800px; margin-top: -180px;"></div>
 
-      <!-- main -->
-      <p style="font-size:25px; text-indent:3%; margin:45px 0px 20px 0px" class="desc"><strong>A short paragraph about me</strong></p>
-      <ul type="square">
-        <li>My favorite food is <a target="_blank" href="https://mblogthumb-phinf.pstatic.net/MjAyNDA0MDJfMjg0/MDAxNzEyMDMyOTI5Nzc1.Hmq4Eui_dyCHed9N3tTZBEgyDCJIkNbk7aTuoa1Zdagg.apYN159J6iEH0WGjkhk2rZDZCeOq5WOtiYg__mMGwq0g.JPEG/SE-bc416644-c8e0-4aeb-9db7-f2d73812e918.jpg?type=w800"><strong style="font-style: italic;">Ochazuche</strong></a></li>
-        <li>My favorite pokemon is <a target="_blank" href="https://assets.pokemon-zone.com/game-assets/CardNew/Face/cPK_20_008130_00_GLACIA_AR/L/Prefabs/cPK_20_008130_00_GLACIA_AR_L_ILL.webp"><strong>Glaceon</strong></a></li>
-        <img src="https://i.namu.wiki/i/59AtApjgiMbA48vbIU_N4uZ4IDjjTDkeaQsphOK8Hdlf7Qd0_GNH35up1eBUAsADDHQ-7Vtbu1SvSEZZFop3rw.webp"
-        alt="Glaceon" width="200"  height="200"/>
-        <li>My favorite song is <a target="_blank" href="https://youtu.be/JWeJHN5P-E8?si=z9xBIkWHcMuJ0FLs"><strong>Teeth</strong></a></li>
-        <li>My favorite website is <a target="_blank" href="https://www.manifesto.ing/"><strong>Manifesto</strong></a></li>
-      </ul>
-
-      <h3 style="font-size:25px; text-indent:3%; margin:50px 0px 0px 0px">Exercises</h3>
-      <ul type="square">
-        <li><a target="_blank" href="ascii/exterior-Yunseo Park.html">ASCII Town</a></li>
-      </ul>
-
-      <!-- exit (return to landing page) -->
-      <a href="javascript:window.close();"><p class="desc"><strong>Exit</strong></p></a>
-
+  <!-- box_top -->
+  <div class="box-top">
+    <div class="box-top-text">
+      Yunseo Park <span>Lv.100</span>
+      <div class="hp1">
+      </div>
     </div>
   </div>
+
+  <!-- character -->
+  <img class="character" src="https://static.wikia.nocookie.net/pokemon/images/3/30/%EA%B8%80%EB%A0%88%EC%9D%B4%EC%8B%9C%EC%95%84_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest?cb=20170730120630&path-prefix=ko">
+
+  <!-- box_bottom -->
+  <div class="box-bottom-shadow">
+  <div class="box-bottom">
+    <div class="box-bottom-text1">
+      UI Design<span>Lv.100</span>
+    </div>
+    <div class="hp2"></div>
+    <div class="box-bottom-text2">
+      <span class="box-bottom-text2_t">Programming</span>
+      <div class="bar small inline">
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- menu -->
+  <div class="menu">
+    <a target="_blank" href="index.html" class="btn">
+      <span>About Me</span>
+      <img src="assets/icon3.svg" style="margin-top: 19px;">
+    </a>
+
+    <a target="_blank" href="exercise.html" class="btn red">
+      <span>Exercise</span>
+      <img src="assets/icon4.svg" style="margin-bottom: 5px;">
+    </a>
+
+    <a target="_blank" href="project.html" class="btn orange">
+      <span>Project</span>
+      <img src="assets/icon2.svg" style="margin-bottom: 15px;">
+    </a>
+
+    <a href="exit.html" class="btn purple exit">
+     <span>Exit</span>
+     <img src="assets/icon1.svg">
+    </a>
+  </div>
+
+  <!-- loading -->
+  <div class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+<script>
+const buttons = document.querySelectorAll('.btn');
+const loader = document.querySelector('.loading-overlay');
+
+buttons.forEach(btn => {
+  if (btn.classList.contains('exit')) return;
+
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const link = this.getAttribute('href');
+
+    this.classList.add('clicked');
+
+    setTimeout(() => {
+      loader.classList.add('active');
+    }, 150);
+
+    setTimeout(() => {
+      window.open(link, '_blank');
+    }, 800);
+
+    setTimeout(() => {
+      loader.classList.remove('active');
+    }, 1000);
+  });
+});
+</script>
+
+
+</div>
 
 </body>
 
