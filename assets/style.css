@@ -1,23 +1,322 @@
+/* reset */
 * {
 	margin:  0px;
 	padding:  0px;
 	box-sizing: border-box;
 }
 
-/* adjusting fonts */
-
 body {
+  background: #f5f5f5;
+  font-family: 'Pretendard', sans-serif;
+}
+
+a:link {
+  color: rgb(0, 0, 0); text-decoration: none;
+}	
+
+a:visited {
+  color: #000000; text-decoration: none;
+}	
+
+a:hover {
+  color: #0c47c7; text-decoration: none;
+}
+
+/* canvas */
+.wrap {
+  position: relative;
+  width: 950px;
+  height: 550px;
+  margin: 100px auto;
+}
+
+.wrap > *:not(.bg) {
+  z-index: 2;
+}
+
+/* background */
+.bg {
+  position: absolute;
+}
+
+.bg.front {
+  width: 740px;
+  height: 480px;
+  border-radius: 40px;
+
+  background: #f5f5f5;
+
+  top: 43px;
+  left: 94px;
+
+  z-index: 1;
+
+  overflow: hidden;
+}
+
+.bg.back {
+  width: 776px;
+  height: 516px;
+  border-radius: 55px;
+
+  background: #f2f2f2;
+
+  top: 26px;
+  left: 76px;
+
+  z-index: 0;
+
+  box-shadow: 0 0px 40px rgba(0,0,0,0.4);
+}
+
+/* box_top */
+.box-top {
+  position: absolute;
+  top: 70px;
+  right: 116px;
+
+  filter: drop-shadow(-20px 6px 10px rgba(0,0,0,0.15));
+}
+
+.box-top-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  background: #f2f2f2;
+  padding: 5px 20px 22px 70px;
+
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 0% 100%);
+
+  font-weight: 600;
+  font-size: 37px;
+
+  position: relative;
+}
+
+.box-top-text span {
+  font-size: 14px;
+  padding: 0px 0px 8px 10px;
+}
+
+.hp1 {
+  position: absolute;
+  bottom: 15px;
+  left: 70px;
+
+  width: 280px;
+  height: 6px;
+  background: #2ecc71;
+}
+
+
+/* character */
+.character {
+  position: absolute;
+  left: 130px;
+  top: 75px;
+  width: 370px;
+
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15));
+}
+
+@keyframes moveRightAndBack {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(16px); /* 오른쪽 이동 */
+  }
+  100% {
+    transform: translateY(0); /* 다시 돌아옴 */
+  }
+}
+
+.character:hover {
+  animation: moveRightAndBack 1s ease;
+}
+
+/* box_bottom */
+.box-bottom-shadow {
+  position: absolute;
+  left: 94px;
+  bottom: 60px;
+
+  filter: drop-shadow(20px 6px 10px rgba(0,0,0,0.15));
+}
+
+.box-bottom {
+  background: #f2f2f2;
+  padding: 7px 60px 12px 20px;
+
+  clip-path: polygon(0% 0%, 100% 0%, 84% 100%, 0% 100%);
+}
+
+.box-bottom-text1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  font-weight: 750;
+  font-size: 28px;
+
+  position: relative;
+}
+
+.box-bottom-text1 span {
+  font-size: 14px;
+}
+
+.hp2 {
+  width: 270px;
+  height: 6px;
+  background: #2ecc71;
+  margin-top: 6px;
+}
+
+.box-bottom-text2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-bottom-text2_t {
+  font-weight: 750;
+  font-size: 18px;
+}
+
+.bar.small.inline {
+  width: 110px;
+  height: 5px;
+  margin: 0px 0px 0px 30px;
+  background: #8a8a8a
+}
+
+
+/* menu */
+.menu {
+  position: absolute;
+  right: 160px;
+  top: 223px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.btn {
+  width: 210px;
+  height: 55px;
+  padding: 0 20px;
+
+  background: #f2f2f2;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 600;
+  font-size: 21px;
+  cursor: pointer;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.btn img {
+  width: 65px;
+  height: 65px;
+  opacity: 1;
+  margin: 12px -10px 0px 11px;
+  
+}
+
+/* hover */
+.btn:hover {
+  background: #000;
+  color: #fff;
+
+  transform: translateX(14px);
+
+  box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+
+  transition: all 0.25s ease;
+}
+
+.btn:active {
+  transform: translateY(2px) translateX(6px);
+  transform: scale(0.97) translateX(6px);
+  filter: brightness(0.8);
+
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+
+
+/* loading */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.loading-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  background: url("icon3.svg") no-repeat center/contain;
+  border: none;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* adjusting fonts */
+/* body {
 	font-family: -apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif;
 	transition: background 500ms ease;
 }
 
-p, li {
-	font-size:  22px;
-	line-height: 30px;
+h1 {
+	font-size:60px;
+	font-family:times;
+	font-weight:bolder;
 }
 
-/* adjusting spacing */
+p, li {
+	line-height:140%;
+    font-size:18px
+} */
 
+/* adjusting spacing */
+/* 
 #left-column {
 	padding: 20px;
 }
@@ -33,7 +332,7 @@ ul, ol {
 img {
 	max-width: 100%;
 	height:  auto;
-}
+} */
 
 /* uncomment the code below to set the grid */
 
