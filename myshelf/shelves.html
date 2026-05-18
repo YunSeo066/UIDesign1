@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CSS Grid</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="shelves.css" type="text/css" />
+</head>
+
+<body>
+
+	<h1>Yunseo's Shelf<br />Book Collection</h1>
+	<h2>
+		<a href="javascript:window.close();">
+        <pre style="font-family: Helvetica; margin: 10px 15px 10px 15px;">Exit</pre>
+      </a>
+	</h2>
+
+	<div id="bookcase">
+		<div class="shelf">
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;"
+				 onclick="openModal(this)" data-title="1984" data-description="George Orwell의 디스토피아 소설." />
+			<img src="img/ssur.jpg" style="width: 160px; height: auto;"
+			     onclick="openModal(this)" data-title="수레바퀴 아래서" data-description="헤르만 헤세의 소설" />
+			<img src="img/saml.jpg" style="width: 215px; height: auto;"
+			     onclick="openModal(this)" data-title="동물농장" data-description="헤르만 헤세의 소설" />
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+		</div>
+
+		<div class="shelf">
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+		</div>
+
+		<div class="shelf">
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+		</div>
+
+		<div class="shelf">
+			<img src="img/s1984.jpg" style="width: 35px; height: auto;" />
+		</div>
+
+	
+	<div id="overlay" onclick="closeModal()">
+		<div id="modal" onclick="event.stopPropagation()">
+			<span onclick="closeModal()">✕</span>
+			<img id="modal-img" src="">
+			<h3 id="modal-title"></h3>
+			<p id="modal-desc"></p>
+		</div>
+	</div>
+
+	<script>
+		function openModal(book) {
+			document.getElementById("modal-img").src = book.src;
+			document.getElementById("modal-title").innerText = book.dataset.title;
+			document.getElementById("modal-desc").innerText = book.dataset.description;
+			document.getElementById("overlay").style.display = "flex";
+		}
+
+		function closeModal() {
+			document.getElementById("overlay").style.display = "none";
+		}
+	</script>
+</body>
+</html>
