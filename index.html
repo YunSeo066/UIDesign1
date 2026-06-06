@@ -4,6 +4,12 @@
 <head>
   <title>Yunseo Park | UI Design Programming 1</title>
   <meta charset="utf-8" />
+    <script>
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark-mode");
+}
+</script>
+  <script src="darkmode.js" defer></script>
   <script>
   (() => {
     const theme = localStorage.getItem("theme");
@@ -17,7 +23,7 @@
 </head>
 
 <body>
-<button class="darkmode">
+<button class="darkmode" onclick="toggleDarkMode(); updateThemeIcon();">
   <img src="assets/dark.png" id="themeIcon" alt="theme">
 </button>
 <div class="wrap">
@@ -123,20 +129,20 @@ function updateThemeIcon() {
 
 updateThemeIcon();
 
-darkBtn.addEventListener("click", () => {
+// darkBtn.addEventListener("click", () => {
 
-  document.documentElement.classList.toggle("dark-mode");
+//   document.documentElement.classList.toggle("dark-mode");
 
-  const isDark =
-    document.documentElement.classList.contains("dark-mode");
+//   const isDark =
+//     document.documentElement.classList.contains("dark-mode");
 
-  localStorage.setItem(
-    "theme",
-    isDark ? "dark" : "light"
-  );
+//   localStorage.setItem(
+//     "theme",
+//     isDark ? "dark" : "light"
+//   );
 
-  updateThemeIcon();
-});
+//   updateThemeIcon();
+// });
 </script>
 
 

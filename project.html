@@ -3,47 +3,33 @@
 <html>
 
 <head>
-
   <title>Yunseo Park | UI Design Programming 1</title>
   <meta charset="utf-8" />
- 
-  <!-- CSS inline -->
-  <style>
-    body {background-color: rgb(229, 245, 250);
-          line-height:100%;}
-
-    p {font-size:25px;
-      text-indent:3%;
-      margin:45px 0px 20px 0px}
-
-    li {line-height:140%;
-        font-size:18px;
-        margin: 0px 0px 0px 35px;}
-  </style>
-
-  <!-- link setting -->
-  <style type="text/css">
-        a:link { color: rgb(0, 0, 0); text-decoration: none;}	
-        a:visited { color: #000000; text-decoration: none;}	
-        a:hover { color: #0c47c7; text-decoration: underline;}
-  </style>
-
+    <script>
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark-mode");
+}
+</script>
+  <link rel="stylesheet" href="style2.css">
+  <script src="darkmode.js" defer></script>
 </head>
 
 <body>
-
+<button class="darkmode" onclick="toggleDarkMode(); updateThemeIcon();">
+  <img src="assets/dark.png" id="themeIcon" alt="theme">
+</button>
   <!-- canvas -->
   <div id="grid" style="margin: 50px 0px 0px 0px">
     <div id="left-column" class="scroll">  
 
       <!-- title -->
-      <h1 style="font-size:60px; font-family:times; font-weight:bolder; text-indent:2%">Yunseo Park</h1>
+      <h1 class="page-title">Yunseo Park</h1>
 
       <!-- ___________ -->
       <hr>
 
       <!-- main -->
-      <h3 style="font-size:25px; text-indent:3%; margin:50px 0px 0px 0px">Projects</h3>
+      <h3 class="section-title">Projects</h3>
       <ul type="square">
         <li><a target="_blank" href="Clock_Ex/index.html">Clock</a></li>
       </ul>
@@ -53,7 +39,20 @@
 
     </div>
   </div>
+<script>
+const darkBtn = document.querySelector(".darkmode");
+const themeIcon = document.getElementById("themeIcon");
 
+function updateThemeIcon() {
+  if (document.documentElement.classList.contains("dark-mode")) {
+    themeIcon.src = "assets/light.png";
+  } else {
+    themeIcon.src = "assets/dark.png";
+  }
+}
+
+updateThemeIcon();
+</script>
 </body>
 
 </html>

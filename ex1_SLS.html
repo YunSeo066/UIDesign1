@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark-mode");
+}
+</script>
+  <script src="darkmode.js" defer></script>
   <link rel="stylesheet" type="text/css" href="assets/ex1_css.css">
   <title>Exercise: Coding from Life</title>
   
   <style>
   </style>
 </head>
-
+<button class="darkmode" onclick="toggleDarkMode(); updateThemeIcon();">
+  <img src="assets/dark.png" id="themeIcon" alt="theme">
+</button>
 <body>
   <div id="container">
-    <div id="Text">This is my CSS drawing ^-^</div>
+    <div id="Text"><p class="Textt">This is my CSS drawing ^-^</p></div>
     <div id="stage">
       <div id="table"></div>
 
@@ -51,6 +59,19 @@
       </a>
     </div>
   </div>
+<script>
+const darkBtn = document.querySelector(".darkmode");
+const themeIcon = document.getElementById("themeIcon");
 
+function updateThemeIcon() {
+  if (document.documentElement.classList.contains("dark-mode")) {
+    themeIcon.src = "assets/light.png";
+  } else {
+    themeIcon.src = "assets/dark.png";
+  }
+}
+
+updateThemeIcon();
+</script>
 </body>
 </html>

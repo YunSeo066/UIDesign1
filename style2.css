@@ -1,0 +1,356 @@
+/* ======================
+   GLOBAL
+====================== */
+
+body {
+  background-color: rgb(229, 245, 250);
+  line-height: 100%;
+}
+
+a:link,
+a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0c47c7;
+  text-decoration: underline;
+}
+
+/* ======================
+   TEXT
+====================== */
+
+.page-title {
+  font-size: 60px;
+  font-family: Times, serif;
+  font-weight: bolder;
+  text-indent: 2%;
+}
+
+.section-title {
+  font-size: 25px;
+  text-indent: 3%;
+  margin: 50px 0 0;
+}
+
+.desc {
+  font-size: 25px;
+  text-indent: 3%;
+  margin: 45px 0 20px;
+}
+
+li {
+  line-height: 140%;
+  font-size: 18px;
+  margin-left: 35px;
+}
+
+/* ======================
+   LAYOUT
+====================== */
+
+.page-container {
+  margin-top: 50px;
+}
+
+/* ======================
+   ASCII PAGES
+====================== */
+
+.ascii-body {
+  margin: 50px 0 0 50px;
+}
+
+.ascii-art {
+  font-family: Consolas, monospace;
+}
+
+/* ======================
+   BYE PAGE
+====================== */
+
+.bye-page {
+  margin: 0;
+  height: 100vh;
+
+  background: #f5f5f5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: sans-serif;
+}
+
+.bye-container {
+  text-align: center;
+}
+
+.bye-image {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.bye-text {
+  margin-top: 20px;
+
+  font-size: 28px;
+  font-weight: 600;
+
+  color: #333;
+}
+
+
+
+
+
+.btn {
+  width: 210px;
+  height: 55px;
+  padding: 0 20px;
+
+  background: #f2f2f2;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 600;
+  font-size: 21px;
+  cursor: pointer;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.btn img {
+  width: 65px;
+  height: 65px;
+  opacity: 1;
+  margin: 12px -10px 0px 11px;
+  
+}
+
+/* hover */
+.btn:hover {
+  background: #000;
+  color: #fff;
+
+  transform: translateX(14px);
+
+  box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+
+  transition: all 0.25s ease;
+}
+
+.btn:active {
+  transform: translateY(2px) translateX(6px);
+  transform: scale(0.97) translateX(6px);
+  filter: brightness(0.8);
+
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+
+.darkmode {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f2f2f2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.darkmode img {
+  width: 30px;
+  height: 30px;
+}
+
+/* loading */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.loading-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  background: url("icon3.svg") no-repeat center/contain;
+  border: none;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+/* 부드러운 전환 */
+html,
+body,
+.bg.front,
+.bg.back,
+.box-top-text,
+.box-bottom,
+.btn,
+.darkmode,
+a,
+.hp1,
+.hp2,
+.bar.small.inline {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* 전체 배경 */
+.dark-mode body {
+  background: #121212;
+  color: #a0a0a0;
+}
+
+/* 메인 패널 */
+.dark-mode .bg.front {
+  background: #1e1e1e;
+}
+
+.dark-mode .bg.back {
+  background: #2a2a2a;
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* 상단 박스 */
+.dark-mode .box-top-text {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+/* 하단 박스 */
+.dark-mode .box-bottom {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+/* 메뉴 버튼 */
+.dark-mode .btn {
+  background: #2a2a2a;
+  color: #ffffff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+
+.dark-mode .btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.dark-mode .btn:active {
+  filter: brightness(0.9);
+}
+
+/* 다크모드 버튼 */
+.dark-mode .darkmode {
+  background: #2a2a2a;
+}
+
+/* 링크 */
+.dark-mode a:link,
+.dark-mode a:visited,
+.dark-mode .box-top-text span,
+.dark-mode .box-bottom-text1 span,
+.dark-mode .box-bottom-text2_t {
+  color: #828282;
+}
+
+.dark-mode a:hover {
+  color: #7ab8ff;
+}
+
+/* 체력바 */
+.dark-mode .hp1,
+.dark-mode .hp2 {
+  background: #4ade80;
+}
+
+/* 회색 바 */
+.dark-mode .bar.small.inline {
+  background: #666666;
+}
+
+/* 로딩 */
+.dark-mode .loading-overlay {
+  background: rgba(0,0,0,0.95);
+}
+
+/* 다크모드 버튼 hover */
+.dark-mode .darkmode:hover {
+  transform: scale(1.08);
+}
+
+/* 그림자 보정 */
+.dark-mode .character {
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.45));
+}
+
+.dark-mode .box-top {
+  filter: drop-shadow(-20px 6px 12px rgba(0,0,0,0.4));
+}
+
+.dark-mode .box-bottom-shadow {
+  filter: drop-shadow(20px 6px 12px rgba(0,0,0,0.4));
+}

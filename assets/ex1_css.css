@@ -29,6 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: -25px;
 }
 
 #Text {
@@ -381,4 +382,261 @@ body {
   border-radius: 0 50% 50% 50%;
 
   transform: rotate(-15deg);
+}
+
+
+
+
+.btn {
+  width: 210px;
+  height: 55px;
+  padding: 0 20px;
+
+  background: #f2f2f2;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 600;
+  font-size: 21px;
+  cursor: pointer;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.btn img {
+  width: 65px;
+  height: 65px;
+  opacity: 1;
+  margin: 12px -10px 0px 11px;
+  
+}
+
+/* hover */
+.btn:hover {
+  background: #000;
+  color: #fff;
+
+  transform: translateX(14px);
+
+  box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+
+  transition: all 0.25s ease;
+}
+
+.btn:active {
+  transform: translateY(2px) translateX(6px);
+  transform: scale(0.97) translateX(6px);
+  filter: brightness(0.8);
+
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+
+.darkmode {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f2f2f2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.darkmode img {
+  width: 30px;
+  height: 30px;
+}
+
+/* loading */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.loading-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  background: url("icon3.svg") no-repeat center/contain;
+  border: none;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.Textt {
+  color: #000000;
+}
+
+
+
+
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+/* 부드러운 전환 */
+html.dark-mode html,
+html.dark-mode body,
+html.dark-mode .bg.front,
+html.dark-mode .bg.back,
+html.dark-mode .box-top-text,
+html.dark-mode .box-bottom,
+html.dark-mode .btn,
+html.dark-mode .darkmode,
+html.dark-mode a,
+html.dark-mode .hp1,
+html.dark-mode .hp2,
+html.dark-mode .bar.small.inline {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* 전체 배경 */
+html.dark-mode body {
+  background: #121212;
+  color: #a0a0a0;
+}
+
+/* 메인 패널 */
+html.dark-mode .bg.front {
+  background: #1e1e1e;
+}
+
+html.dark-mode .bg.back {
+  background: #2a2a2a;
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* 상단 박스 */
+html.dark-mode .box-top-text {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+/* 하단 박스 */
+html.dark-mode .box-bottom {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+/* 메뉴 버튼 */
+html.dark-mode .btn {
+  background: #2a2a2a;
+  color: #ffffff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+
+html.dark-mode .btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+html.dark-mode .btn:active {
+  filter: brightness(0.9);
+}
+
+/* 다크모드 버튼 */
+html.dark-mode .darkmode {
+  background: #2a2a2a;
+}
+
+/* 링크 */
+html.dark-mode a:link,
+html.dark-mode a:visited,
+html.dark-mode .box-top-text span,
+html.dark-mode .box-bottom-text1 span,
+html.dark-mode .box-bottom-text2_t {
+  color: #828282;
+}
+
+html.dark-mode a:hover {
+  color: #7ab8ff;
+}
+
+/* 체력바 */
+html.dark-mode .hp1,
+html.dark-mode .hp2 {
+  background: #4ade80;
+}
+
+/* 회색 바 */
+html.dark-mode .bar.small.inline {
+  background: #666666;
+}
+
+/* 로딩 */
+html.dark-mode .loading-overlay {
+  background: rgba(0,0,0,0.95);
+}
+
+/* 다크모드 버튼 hover */
+html.dark-mode .darkmode:hover {
+  transform: scale(1.08);
+}
+
+/* 그림자 보정 */
+html.dark-mode .character {
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.45));
+}
+
+html.dark-mode .box-top {
+  filter: drop-shadow(-20px 6px 12px rgba(0,0,0,0.4));
+}
+
+html.dark-mode .box-bottom-shadow {
+  filter: drop-shadow(20px 6px 12px rgba(0,0,0,0.4));
+}
+
+html.dark-mode .Textt {
+  color: #b4b4b4;
+}
+
+html.dark-mode #stage {
+  border: 4px solid #999999;
 }

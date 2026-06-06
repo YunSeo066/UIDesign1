@@ -3,16 +3,30 @@
   <head>
         <title>Ascii Town: Yunseo Park</title>
         <meta charset="utf-8" />
+        <script>
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark-mode");
+}
+</script>
+        <script src="../darkmode.js" defer></script>
+        <link rel="stylesheet" href="../style2.css">
         <style>
-          body {background-color: rgb(229, 245, 250);}
-        </style>
-        <style type="text/css">
-        a:link { color: rgb(0, 0, 0); text-decoration: none;}	
-        a:visited { color: #000000; text-decoration: none;}	
-        a:hover { color: #0f299c; text-decoration: none;}
+          a:link,
+          a:visited {
+            color: #000;
+            text-decoration: none;
+          }
+
+          a:hover {
+            color: #063aab;
+            text-decoration: none;
+          }
         </style>
   </head>
   <body style="margin: 50px 0px 0px 50px">
+  <button class="darkmode" onclick="toggleDarkMode(); updateThemeIcon();">
+  <img src="../assets/dark.png" id="themeIcon" alt="theme">
+  </button>
   <a href='interior-Yunseo Park.html'>
     <pre style='font-family: consolas'>
         Ç°°Ð       ¸    ¸_        \ │ /           
@@ -41,4 +55,18 @@ ___¸¸____ .██.░░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░░
     </pre>
   </a>
   </body>
+<script>
+const darkBtn = document.querySelector(".darkmode");
+const themeIcon = document.getElementById("themeIcon");
+
+function updateThemeIcon() {
+  if (document.documentElement.classList.contains("dark-mode")) {
+    themeIcon.src = "../assets/light.png";
+  } else {
+    themeIcon.src = "../assets/dark.png";
+  }
+}
+
+updateThemeIcon();
+</script>
 </html>
