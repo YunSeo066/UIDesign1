@@ -4,11 +4,22 @@
 <head>
   <title>Yunseo Park | UI Design Programming 1</title>
   <meta charset="utf-8" />
+  <script>
+  (() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  })();
+  </script>
   <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 
 <body>
-
+<button class="darkmode">
+  <img src="assets/dark.png" id="themeIcon" alt="theme">
+</button>
 <div class="wrap">
 
 
@@ -97,6 +108,34 @@ buttons.forEach(btn => {
       loader.classList.remove('active');
     }, 1000);
   });
+});
+
+const darkBtn = document.querySelector(".darkmode");
+const themeIcon = document.getElementById("themeIcon");
+
+function updateThemeIcon() {
+  if (document.documentElement.classList.contains("dark-mode")) {
+    themeIcon.src = "assets/light.png";
+  } else {
+    themeIcon.src = "assets/dark.png";
+  }
+}
+
+updateThemeIcon();
+
+darkBtn.addEventListener("click", () => {
+
+  document.documentElement.classList.toggle("dark-mode");
+
+  const isDark =
+    document.documentElement.classList.contains("dark-mode");
+
+  localStorage.setItem(
+    "theme",
+    isDark ? "dark" : "light"
+  );
+
+  updateThemeIcon();
 });
 </script>
 

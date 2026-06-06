@@ -253,6 +253,29 @@ a:hover {
   box-shadow: 0 3px 0 rgba(0,0,0,0.2);
 }
 
+.darkmode {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f2f2f2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.darkmode img {
+  width: 30px;
+  height: 30px;
+}
 
 /* loading */
 .loading-overlay {
@@ -297,6 +320,137 @@ a:hover {
   }
 }
 
+
+
+
+
+
+
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+/* 부드러운 전환 */
+html,
+body,
+.bg.front,
+.bg.back,
+.box-top-text,
+.box-bottom,
+.btn,
+.darkmode,
+a,
+.hp1,
+.hp2,
+.bar.small.inline {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* 전체 배경 */
+.dark-mode body {
+  background: #121212;
+  color: #ffffff;
+}
+
+/* 메인 패널 */
+.dark-mode .bg.front {
+  background: #1e1e1e;
+}
+
+.dark-mode .bg.back {
+  background: #2a2a2a;
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* 상단 박스 */
+.dark-mode .box-top-text {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+/* 하단 박스 */
+.dark-mode .box-bottom {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+/* 메뉴 버튼 */
+.dark-mode .btn {
+  background: #2a2a2a;
+  color: #ffffff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+
+.dark-mode .btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.dark-mode .btn:active {
+  filter: brightness(0.9);
+}
+
+/* 다크모드 버튼 */
+.dark-mode .darkmode {
+  background: #2a2a2a;
+}
+
+/* 링크 */
+.dark-mode a:link,
+.dark-mode a:visited {
+  color: #ffffff;
+}
+
+.dark-mode a:hover {
+  color: #7ab8ff;
+}
+
+/* 텍스트 */
+.dark-mode .box-top-text span,
+.dark-mode .box-bottom-text1 span,
+.dark-mode .box-bottom-text2_t {
+  color: #ffffff;
+}
+
+/* 체력바 */
+.dark-mode .hp1,
+.dark-mode .hp2 {
+  background: #4ade80;
+}
+
+/* 회색 바 */
+.dark-mode .bar.small.inline {
+  background: #666666;
+}
+
+/* 로딩 */
+.dark-mode .loading-overlay {
+  background: rgba(0,0,0,0.95);
+}
+
+/* 다크모드 버튼 hover */
+.dark-mode .darkmode:hover {
+  transform: scale(1.08);
+}
+
+/* 그림자 보정 */
+.dark-mode .character {
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.45));
+}
+
+.dark-mode .box-top {
+  filter: drop-shadow(-20px 6px 12px rgba(0,0,0,0.4));
+}
+
+.dark-mode .box-bottom-shadow {
+  filter: drop-shadow(20px 6px 12px rgba(0,0,0,0.4));
+}
 
 /* adjusting fonts */
 /* body {

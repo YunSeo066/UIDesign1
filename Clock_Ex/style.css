@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+
+  padding: 30px;
+}
+
+.container {
+  width: 100%;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  margin-top: 15px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.9rem;
+}
+
+#clock {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  align-items: center;
+}
+
+/* 공통 네모 스타일 */
+.block {
+  width: 83.3px;
+  height: 83.3px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* .second {
+  border: 3px solid white;
+  color: white;
+  background: transparent;
+}
+
+.minute {
+  background: #ffd000;
+  color: black;
+}
+
+.hour {
+  background: #0066ff;
+  color: white;
+} */
+
+
+
+.second {
+  border: 3px solid var(--second-color);
+  color: var(--second-color);
+  background: transparent;
+}
+
+.minute {
+  background: var(--minute-color);
+  color: black;
+}
+
+.hour {
+  background: var(--hour-color);
+  color: white;
+}
