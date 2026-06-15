@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ootd-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 0;
+    background-color: #ffffff;
+}
+
+.category-section {
+    position: relative;
+    margin-bottom: 60px;
+    padding: 0 162px;
+}
+
+.category-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 13px;
+    font-variation-settings: "wdth" 100;
+}
+
+.category-background {
+    background-color: #f1f1f1;
+    border-radius: 30px;
+    padding: 45px 42px;
+    position: relative;
+    overflow: hidden;
+}
+
+.items-wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    position: relative;
+    scroll-behavior: smooth;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.items-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.item-card {
+    flex-shrink: 0;
+    width: 147px;
+    height: 140px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.item-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll shadow effect */
+.category-background::before,
+.category-background::after {
+    content: '';
+    position: absolute;
+    top: 45px;
+    width: 33px;
+    height: 174px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.category-background::before {
+    left: 0;
+    background: linear-gradient(to right, #f1f1f1, rgba(241, 241, 241, 0.3));
+    box-shadow: inset 0px 0px 25px 5px #f1f1f1;
+}
+
+.category-background::after {
+    right: 0;
+    background: linear-gradient(to left, #f1f1f1, rgba(241, 241, 241, 0.3));
+    box-shadow: inset 0px 0px 25px 5px #f1f1f1;
+}
+
+/* Responsive design */
+@media (max-width: 1440px) {
+    .category-section {
+        padding: 0 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-section {
+        padding: 0 30px;
+    }
+
+    .category-background {
+        padding: 30px 20px;
+    }
+
+    .item-card {
+        width: 130px;
+        height: 120px;
+    }
+}

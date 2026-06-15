@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OOTD in Web</title>
+  <script>if (localStorage.getItem("theme") === "dark") {document.documentElement.classList.add("dark-mode");}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="closet.css" />
+</head>
+<body>
+  <button class="sidebar-toggle" id="toggleBtn">☰</button>
+  
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      
+      <div class="sidebar-header">
+        <h2>menu</h2>
+        <button class="sidebar-closeBtn" id="closeBtn">×</button>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-header">
+          <span class="menu-group-toggle">clothes</span>
+          <span class="menu-group-viewall"><a href="closet.html">view all</a></span>
+        </div>
+        <ul class="menu-list">
+          <li><a href="cate.html?category=Category1">category1</a></li>
+          <li><a href="cate.html?category=Category2">category2</a></li>
+          <li><a href="cate.html?category=Category3">category3</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-header">
+          <span class="menu-group-toggle">outfits</span>
+          <span class="menu-group-viewall"><a href="outfits.html">view all</a></span>
+        </div>
+        <ul class="menu-list">
+          <li><a href="cate.html?type=outfits&category=Category1">category1</a></li>
+          <li><a href="cate.html?type=outfits&category=Category2">category2</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h1><a href="create.html">Create New Outfits</a></h1>
+          <span class="top-bar-save">Save</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-bar-upload"><a href="main.html">Upload</a></span>
+          <span class="user-name" id="userName"># User 4403</span>
+          <button class="ModeChange">
+            <img src="images/dark.png"/>
+          </button>
+        </div>
+      </header>
+        <div class="category-section">
+            <div class="category-background">
+              <div class="category-label">category1</div>
+                <div class="items-wrapper" id="category1Items">
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="category-background">
+              <div class="category-label">category2</div>
+                <div class="items-wrapper" id="category2Items">
+                </div>
+            </div>
+        </div>
+
+      <div class="modal-overlay" id="detailModal">
+
+        <div class="modal-box">
+
+          <div class="modal-left">
+
+            <h2>Clothes Detail</h2>
+
+            <div class="input-box">
+              <label>Name</label>
+              <input id="detailName" readonly>
+            </div>
+
+            <div class="category-box">
+              <label>Category</label>
+              <div id="detailCategory"></div>
+            </div>
+
+            <div class="tag-section">
+              <h3>Tag</h3>
+              <div id="detailTags"></div>
+            </div>
+
+            <div class="input-box">
+              <label>Memo</label>
+              <input id="detailMemo" readonly>
+            </div>
+
+            <div class="fav">
+              <span id="detailFavorite"></span>
+            </div>
+
+          </div>
+
+          <div class="modal-right">
+
+            <div class="image-box">
+              <img id="detailImage">
+            </div>
+
+            <div class="detail-btns">
+              <button id="editBtn">Edit</button>
+              <button id="deleteBtn">Delete</button>
+              <button id="closeDetailBtn">Close</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+<div class="modal-overlay" id="editModal">
+  <div class="modal-box">
+
+    <div class="modal-left">
+
+      <h2>Edit Clothes</h2>
+
+      <div class="input-box">
+        <label for="edit-name">Name</label>
+        <input
+          id="edit-name"
+          type="text"
+          placeholder="Enter clothing name"
+        />
+      </div>
+
+      <div class="category-box">
+        <label>Category</label>
+
+        <div class="btn-box">
+
+          <label>
+            <input
+              type="checkbox"
+              name="edit-category"
+            />
+            <span>New</span>
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="edit-category"
+            />
+            <span>Category1</span>
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="edit-category"
+            />
+            <span>Category2</span>
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="edit-category"
+            />
+            <span>Category3</span>
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="edit-category"
+            />
+            <span>Category4</span>
+          </label>
+
+        </div>
+      </div>
+
+      <div class="tag-section">
+
+        <h3>Tag</h3>
+
+        <div class="tag-input-box">
+          <input
+            type="text"
+            id="editTagInput"
+            placeholder="Enter tag and press Enter"
+          />
+        </div>
+
+        <div
+          class="tag-list"
+          id="editTagList">
+        </div>
+
+      </div>
+
+      <div class="input-box">
+        <label for="edit-memo">
+          Memo
+        </label>
+
+        <input
+          id="edit-memo"
+          type="text"
+          placeholder="Enter memo"
+        />
+      </div>
+
+      <div class="fav">
+
+        <label>
+
+          <button
+            type="button"
+            class="fav-btn"
+            id="editFavBtn"
+          >
+            ★
+          </button>
+
+          <span>
+            Mark as Favorite
+          </span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+    <div class="modal-right">
+
+      <div class="image-box">
+        <img
+          src=""
+          id="editImage"
+        />
+      </div>
+<div class="detail-btns2">
+      <button id="closeEditBtn">
+        Close
+      </button>
+
+      <button id="saveEditBtn">
+        Save
+      </button>
+</div>
+    </div>
+
+  </div>
+</div>
+    </main>
+  </div>
+  <script>
+    const appShell = document.querySelector('.app-shell');
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const groups = document.querySelectorAll('.menu-group');
+
+    const openSidebar = () => {
+      sidebar.classList.add('open');
+      appShell.classList.add('sidebar-open');
+    };
+
+    const closeSidebar = () => {
+      sidebar.classList.remove('open');
+      appShell.classList.remove('sidebar-open');
+    };
+    
+    groups.forEach(group => {
+      const header = group.querySelector('.menu-group-header');
+      
+      header.addEventListener('click', () => {
+        group.classList.toggle('open');
+      });
+    });
+    
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      closeSidebar();
+    });
+
+    const sampleClothes = [
+
+      {
+        id: -1,
+        image: "images/h1.png",
+        name: "Black Hoodie",
+        memo: "Winter favorite",
+        category: ["Category1"],
+        tags: ["casual", "winter"],
+        favorite: true
+      },
+
+      {
+        id: -2,
+        image: "images/p1.png",
+        name: "Blue Jeans",
+        memo: "Wide fit denim",
+        category: ["Category2"],
+        tags: ["denim"],
+        favorite: false
+      },
+
+      {
+        id: -3,
+        image: "images/p2.png",
+        name: "Cargo Pants",
+        memo: "Daily wear",
+        category: ["Category3"],
+        tags: ["street", "cargo"],
+        favorite: true
+      }
+
+    ];
+
+    const category1 =
+      document.getElementById("category1Items");
+
+    const category2 =
+      document.getElementById("category2Items");
+
+ 
+const outfits =
+  JSON.parse(
+    localStorage.getItem("outfitsData")
+  ) || [];
+
+outfits.forEach(item => {
+
+  item.category.forEach(category => {
+
+    let target = null;
+
+    if (category === "Category1")
+      target = category1;
+
+    if (category === "Category2")
+      target = category2;
+
+    if (category === "Category3")
+      target = category3;
+
+    if (!target) return;
+
+    const card =
+      document.createElement("div");
+
+    card.className = "item-card";
+
+    card.dataset.id = item.id;
+
+    card.innerHTML = `
+      <img src="${item.image}">
+    `;
+
+    target.appendChild(card);
+
+  });
+
+});
+
+
+    document.addEventListener(
+      "click",
+      (e) => {
+
+        const card =
+          e.target.closest(".item-card");
+
+        if (!card) return;
+
+        const id =
+          Number(card.dataset.id);
+
+        // const clothes =
+        //   JSON.parse(
+        //     localStorage.getItem("clothesData")
+        //   ) || [];
+
+        const item =
+          outfits.find(
+            c => c.id === id
+          );
+
+        if (!item) return;
+
+        openDetailModal(item);
+      }
+    );
+
+
+    const detailModal =
+      document.getElementById("detailModal");
+
+    const detailImage =
+      document.getElementById("detailImage");
+
+    const detailName =
+      document.getElementById("detailName");
+
+    const detailMemo =
+      document.getElementById("detailMemo");
+
+    const detailCategory =
+      document.getElementById("detailCategory");
+
+    const detailTags =
+      document.getElementById("detailTags");
+
+    const detailFavorite =
+      document.getElementById("detailFavorite");
+
+    const closeDetailBtn =
+      document.getElementById("closeDetailBtn");
+
+    let selectedClothesId = null;
+    let editingId = null;
+
+
+    function openDetailModal(item){
+
+      selectedClothesId = item.id;
+
+      detailModal.classList.add("show");
+
+      detailImage.src =
+        item.image;
+
+      detailName.value =
+        item.name || "";
+
+      detailMemo.value =
+        item.memo || "";
+
+      detailCategory.textContent =
+        item.category.join(", ");
+
+      detailFavorite.textContent =
+        item.favorite
+          ? "★ Favorite"
+          : "";
+
+      detailTags.innerHTML = "";
+
+      item.tags.forEach(tag => {
+
+        const tagElement =
+          document.createElement("span");
+
+        tagElement.className =
+          "tag-item";
+
+        tagElement.textContent =
+          tag;
+
+        detailTags.appendChild(
+          tagElement
+        );
+      });
+    };
+
+
+
+    closeDetailBtn.addEventListener(
+      "click",
+      () => {
+
+        detailModal.classList.remove(
+          "show"
+        );
+      }
+    );
+
+
+    document
+      .getElementById("deleteBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          if (selectedClothesId < 0) {
+            alert("기본 샘플 이미지는 삭제할 수 없습니다.");
+            return;
+          };
+
+          const clothes =
+            JSON.parse(
+              localStorage.getItem(
+                "clothesData"
+              )
+            ) || [];
+
+          const filtered =
+            clothes.filter(
+              c =>
+                c.id !==
+                selectedClothesId
+            );
+
+          localStorage.setItem(
+            "clothesData",
+            JSON.stringify(filtered)
+          );
+
+          location.reload();
+        }
+      );
+
+
+const editModal =
+  document.getElementById("editModal");
+
+const editImage =
+  document.getElementById("editImage");
+
+const editName =
+  document.getElementById("edit-name");
+
+const editMemo =
+  document.getElementById("edit-memo");
+
+const editFavBtn =
+  document.getElementById("editFavBtn");
+
+const editTagList =
+  document.getElementById("editTagList");
+
+const editTagInput =
+  document.getElementById("editTagInput");
+
+let editTags = [];
+
+
+function openEditModal(item){
+
+  editingId = item.id;
+
+  detailModal.classList.remove("show");
+
+  editModal.classList.add("show");
+
+  editImage.src = item.image;
+
+  editName.value =
+    item.name || "";
+
+  editMemo.value =
+    item.memo || "";
+
+  editTags =
+    [...(item.tags || [])];
+
+  renderEditTags();
+
+  document
+    .querySelectorAll(
+      'input[name="edit-category"]'
+    )
+    .forEach(cb => {
+
+      const text =
+        cb.nextElementSibling.textContent
+        .trim();
+
+      cb.checked =
+        item.category.includes(text);
+
+    });
+
+  if(item.favorite){
+
+    editFavBtn.classList.add(
+      "active"
+    );
+
+  }else{
+
+    editFavBtn.classList.remove(
+      "active"
+    );
+  };
+}
+
+
+function renderEditTags(){
+
+  editTagList.innerHTML = "";
+
+  editTags.forEach(tag => {
+
+    const tagItem =
+      document.createElement("div");
+
+    tagItem.className =
+      "tag-item";
+
+    tagItem.innerHTML = `
+      <span>${tag}</span>
+      <span class="tag-remove">✕</span>
+    `;
+
+    tagItem
+      .querySelector(".tag-remove")
+      .addEventListener(
+        "click",
+        () => {
+
+          editTags =
+            editTags.filter(
+              t => t !== tag
+            );
+
+          renderEditTags();
+        }
+      );
+
+    editTagList.appendChild(
+      tagItem
+    );
+  });
+}
+
+editTagInput.addEventListener(
+  "keydown",
+  (e) => {
+
+    if (e.key !== "Enter") return;
+
+    e.preventDefault();
+
+    const value =
+      editTagInput.value.trim();
+
+    if (!value) return;
+
+    if (editTags.includes(value)) {
+
+      editTagInput.value = "";
+      return;
+    }
+
+    editTags.push(value);
+
+    renderEditTags();
+
+    editTagInput.value = "";
+  }
+);
+
+
+editFavBtn.addEventListener(
+  "click",
+  () => {
+
+    editFavBtn.classList.toggle(
+      "active"
+    );
+
+  }
+);
+
+document
+  .getElementById("saveEditBtn")
+  .addEventListener(
+    "click",
+    saveEditedClothes
+  );
+
+
+function saveEditedClothes(){
+
+  const saved =
+    JSON.parse(
+      localStorage.getItem(
+        "clothesData"
+      )
+    ) || [];
+
+  const index =
+    saved.findIndex(
+      c => c.id === editingId
+    );
+
+  if(index === -1) return;
+
+  const checkedCategories =
+    [...document.querySelectorAll(
+      'input[name="edit-category"]:checked'
+    )]
+    .map(cb =>
+      cb.nextElementSibling.textContent
+    );
+
+  saved[index] = {
+
+    ...saved[index],
+
+    name:
+      editName.value,
+
+    memo:
+      editMemo.value,
+
+    tags:
+      [...editTags],
+
+    category:
+      checkedCategories,
+
+    favorite:
+      editFavBtn.classList.contains(
+        "active"
+      )
+  };
+
+  localStorage.setItem(
+    "clothesData",
+    JSON.stringify(saved)
+  );
+
+  editModal.classList.remove(
+    "show"
+  );
+
+  location.reload();
+}
+
+
+
+    document
+      .getElementById("editBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          const clothes =
+            JSON.parse(
+              localStorage.getItem("clothesData")
+            ) || [];
+
+          const item =
+            clothes.find(
+              c => c.id === selectedClothesId
+            );
+
+          if (!item) return;
+
+          openEditModal(item);
+
+        }
+      );  
+
+document
+  .getElementById("closeEditBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      editModal.classList.remove(
+        "show"
+      );
+
+      editingId = null;
+    }
+  );
+  </script>
+  <script src="theme.js"></script>
+</body>

@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OOTD in Web</title>
+  <script>if (localStorage.getItem("theme") === "dark") {document.documentElement.classList.add("dark-mode");}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="create.css" />
+</head>
+
+<body>
+  <button class="sidebar-toggle" id="toggleBtn">☰</button>
+  
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      
+      <div class="sidebar-header">
+        <h2>menu</h2>
+        <button class="sidebar-closeBtn" id="closeBtn">×</button>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-header">
+          <span class="menu-group-toggle">clothes</span>
+          <span class="menu-group-viewall"><a href="closet.html">view all</a></span>
+        </div>
+        <ul class="menu-list">
+          <li><a href="cate.html?category=Category1">category1</a></li>
+          <li><a href="cate.html?category=Category2">category2</a></li>
+          <li><a href="cate.html?category=Category3">category3</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-header">
+          <span class="menu-group-toggle">outfits</span>
+          <span class="menu-group-viewall"><a href="outfits.html">view all</a></span>
+        </div>
+        <ul class="menu-list">
+          <li><a href="cate.html?type=outfits&category=Category1">category1</a></li>
+          <li><a href="cate.html?type=outfits&category=Category2">category2</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h1><a href="index.html" class="top-bar-create">Create New Outfits</a></h1>
+          <button class="top-bar-save" id="saveBtn">Save</button>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-bar-upload"><a href="main.html">Upload</a></span>
+          <span class="user-name" id="userName"># User 4403</span>
+          <button class="ModeChange">
+            <img src="images/dark.png"/>
+          </button>
+        </div>
+      </header>
+        <div class="outfits-container">
+
+            <!-- Left Panel -->
+            <div class="panel left-panel">
+              <div class="category-filter">
+
+  <button class="category-tab active"
+          data-category="all">
+    All
+  </button>
+
+  <button class="category-tab"
+          data-category="Category1">
+    Category1
+  </button>
+
+  <button class="category-tab"
+          data-category="Category2">
+    Category2
+  </button>
+
+  <button class="category-tab"
+          data-category="Category3">
+    Category3
+  </button>
+
+</div>
+
+              <div class="category-items" id="clothesPanel">
+                <div class="category-item">
+                  <img src="images/t1.png" alt="" draggable="true">
+                </div>
+
+                <div class="category-item">
+                  <img src="images/t2.png" alt="" draggable="true">
+                </div>
+
+                <div class="category-item">
+                  <img src="images/h1.png" alt="" draggable="true">
+                </div>
+
+                <div class="category-item">
+                  <img src="images/p1.png" alt="" draggable="true">
+                </div>
+
+                <div class="category-item">
+                  <img src="images/p2.png" alt="" draggable="true">
+                </div>
+
+                <div class="category-item">
+                  <img src="images/s1.png" alt="" draggable="true">
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Content -->
+            <div class="center-content" id="outfitCanvas">
+              <div class="background-image guide-image">
+                <img src="images/top.png" alt="">
+              </div>
+
+              <div class="background-image second guide-image">
+                <img src="images/bottom.png" alt="">
+              </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="panel right-panel">
+
+              <div class="panel-header">
+                <div class="panel-label2">layers</div>
+                <button class="add-layer-btn">+</button>
+              </div>
+
+              <div class="layers-container">
+                <div
+                  class="scrollbar-wrapper"
+                  id="layersList"
+                >
+                </div>
+              </div>
+
+              <div class="guide-toggle">
+                <span>guide</span>
+                <button id="guideOn" class="guide-option active">on</button>
+                <span>/</span>
+                <button id="guideOff" class="guide-option">off</button>
+              </div>
+
+            </div>
+
+          </div> <!-- outfits-container 끝 -->
+
+          <!-- Transform Panel -->
+          <div class="transform-panel hidden" id="transformPanel">
+
+            <div class="transform-controls">
+              <button id="resetBtn">
+                  Reset
+              </button>
+              <div class="slider-box">
+                <span>Scale</span>
+                <input
+                  type="range"
+                  id="scaleSlider"
+                  min="20"
+                  max="300"
+                  value="100"
+                >
+              </div>
+
+              <div class="slider-box">
+                <span>Rotate</span>
+                <input
+                  type="range"
+                  id="rotateSlider"
+                  min="-180"
+                  max="180"
+                  value="0"
+                >
+              </div>
+
+              <button id="layerDownBtn">
+                ▼
+              </button>
+
+              <button id="layerUpBtn">
+                ▲
+              </button>
+
+              <button id="deleteBtn">
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+    </main>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+
+      <div class="modal-left">
+
+        <h2>Upload outfits</h2>
+
+        <div class="input-box">
+          <label for="outfit-name">Name</label>
+          <input id="outfit-name" type="text" placeholder="Enter clothing name" />
+        </div>
+
+        <div class="category-box">
+          <label for="clothes-category">Category</label>
+          <div class="btn-box">
+            <label>
+              <input type="checkbox" name="category" />
+              <span>New</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category1</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category2</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category3</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category4</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="tag-section">
+          <h3>Tag</h3>
+          <div class="tag-input-box">
+            <input
+              type="text"
+              id="tagInput"
+              placeholder="Enter tag and press Enter"
+            />
+          </div>
+          <div class="tag-list" id="tagList"></div>
+        </div>
+
+        <div class="input-box">
+          <label for="outfit-memo">Memo</label>
+          <input id="outfit-memo" type="text" placeholder="Enter memo" />
+        </div>
+
+        <div class="fav">
+          <label>
+            <button type="button" class="fav-btn" id="favBtn">★</button>
+            <span>Mark as Favorite</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-right">
+
+        <div class="image-box">
+          <img src="" id="previewImage"/>
+        </div>
+        
+        <button id="closeModal">Upload</button>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <script>
+
+    let layers = [
+      {
+        id: 1,
+        name: "Layer 1",
+        visible: true,
+        items: []
+      }
+    ];
+
+    let selectedLayerId = 1;
+
+    
+
+    const appShell = document.querySelector('.app-shell');
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const groups = document.querySelectorAll('.menu-group');
+
+    const openSidebar = () => {
+      sidebar.classList.add('open');
+      appShell.classList.add('sidebar-open');
+    };
+
+    const closeSidebar = () => {
+      sidebar.classList.remove('open');
+      appShell.classList.remove('sidebar-open');
+    };
+    
+    groups.forEach(group => {
+      const header = group.querySelector('.menu-group-header');
+      
+      header.addEventListener('click', () => {
+        group.classList.toggle('open');
+      });
+    });
+    
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      closeSidebar();
+    });
+
+    const saveBtn = document.getElementById('saveBtn');
+
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    let currentImage = null;
+
+    /* =========================
+      OPEN MODAL
+    ========================= */
+
+    function openModal(url = "") {
+      modalOverlay.classList.add('show');
+
+      if (url) {
+        modalImage.src = url;
+      }
+    }
+
+    saveBtn.addEventListener("click", async () => {
+
+      const canvas =
+        await html2canvas(
+          document.getElementById(
+            "outfitCanvas"
+          )
+        );
+
+      const imageData =
+        canvas.toDataURL("image/png");
+
+      document.getElementById(
+        "previewImage"
+      ).src = imageData;
+
+      modalOverlay.classList.add("show");
+
+    });
+
+    /* =========================
+      CLOSE MODAL
+    ========================= */
+
+    closeModal.addEventListener('click', () => {
+
+      saveOutfit();
+      modalOverlay.classList.remove('show');
+    });
+
+    /* 바깥 클릭 닫기 */
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('show');
+      }
+    });
+
+
+    const tagInput = document.getElementById('tagInput');
+    const tagList = document.getElementById('tagList');
+
+    let tags = [];
+
+    /* 엔터 입력 */
+    tagInput.addEventListener('keydown', (e) => {
+
+      if (e.key !== 'Enter') return;
+
+      e.preventDefault();
+
+      const value = tagInput.value.trim();
+
+      if (!value) return;
+
+      // 중복 방지
+      if (tags.includes(value)) {
+        tagInput.value = '';
+        return;
+      }
+
+      tags.push(value);
+
+      renderTags();
+
+      tagInput.value = '';
+    });
+
+
+    /* 태그 렌더링 */
+    function renderTags() {
+
+      tagList.innerHTML = '';
+
+      tags.forEach(tag => {
+
+        const tagItem = document.createElement('div');
+        tagItem.className = 'tag-item';
+
+        tagItem.innerHTML = `
+          <span>${tag}</span>
+          <span class="tag-remove">✕</span>
+        `;
+
+        /* 삭제 */
+        tagItem.querySelector('.tag-remove')
+          .addEventListener('click', () => {
+
+            tags = tags.filter(t => t !== tag);
+
+            renderTags();
+          });
+
+        tagList.appendChild(tagItem);
+      });
+    }
+
+    const favBtn = document.getElementById('favBtn');
+
+    favBtn.addEventListener('click', () => {
+
+      favBtn.classList.toggle('active');
+
+    });
+
+    const guideOn = document.getElementById("guideOn");
+    const guideOff = document.getElementById("guideOff");
+
+    const guideImages = document.querySelectorAll(".guide-image");
+
+    function showGuide() {
+
+      guideImages.forEach(img => {
+        img.style.display = "flex";
+      });
+
+      guideOn.classList.add("active");
+      guideOff.classList.remove("active");
+    }
+
+    function hideGuide() {
+
+      guideImages.forEach(img => {
+        img.style.display = "none";
+      });
+
+      guideOff.classList.add("active");
+      guideOn.classList.remove("active");
+    }
+
+    guideOn.addEventListener("click", showGuide);
+    guideOff.addEventListener("click", hideGuide);
+
+
+    const transformPanel =
+      document.getElementById("transformPanel");
+
+    const scaleSlider =
+      document.getElementById("scaleSlider");
+
+    const rotateSlider =
+      document.getElementById("rotateSlider");
+
+    const deleteBtn =
+      document.getElementById("deleteBtn");
+
+    const resetBtn =
+      document.getElementById("resetBtn");
+
+    const layerUpBtn =
+      document.getElementById("layerUpBtn");
+
+    const layerDownBtn =
+      document.getElementById("layerDownBtn");
+
+    let selectedItem = null;
+
+
+    const clothesPanel =
+      document.getElementById("clothesPanel");
+
+
+const sampleClothes = [
+
+      {
+        id: -1,
+        image: "images/h1.png",
+        name: "Black Hoodie",
+        memo: "Winter favorite",
+        category: ["Category1"],
+        tags: ["casual", "winter"],
+        favorite: true
+      },
+
+      {
+        id: -2,
+        image: "images/p1.png",
+        name: "Blue Jeans",
+        memo: "Wide fit denim",
+        category: ["Category2"],
+        tags: ["denim"],
+        favorite: false
+      },
+
+      {
+        id: -3,
+        image: "images/p2.png",
+        name: "Cargo Pants",
+        memo: "Daily wear",
+        category: ["Category3"],
+        tags: ["street", "cargo"],
+        favorite: true
+      }
+
+    ];
+
+    const clothes = [
+
+      ...sampleClothes,
+
+      ...(JSON.parse(
+        localStorage.getItem("clothesData")
+      ) || [])
+
+    ];
+
+
+
+function renderClothes(category = "all") {
+
+  clothesPanel.innerHTML = "";
+
+  const filtered =
+    category === "all"
+      ? clothes
+      : clothes.filter(item =>
+          item.category.includes(category)
+        );
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "category-item";
+
+    card.innerHTML = `
+      <img
+        src="${item.image}"
+        draggable="true"
+        data-id="${item.id}"
+      >
+    `;
+
+    clothesPanel.appendChild(card);
+
+  });
+
+}
+
+
+const tabs =
+  document.querySelectorAll(
+    ".category-tab"
+  );
+
+tabs.forEach(tab => {
+
+  tab.addEventListener("click", () => {
+
+    tabs.forEach(t =>
+      t.classList.remove("active")
+    );
+
+    tab.classList.add("active");
+
+    renderClothes(
+      tab.dataset.category
+    );
+
+  });
+
+});
+
+renderClothes("all");
+
+    /* =========================
+      DRAG & DROP
+    ========================= */
+
+    // const categoryImages =
+    //   document.querySelectorAll(".category-item img");
+
+    const centerContent =
+      document.querySelector(".center-content");
+
+    let draggedSrc = "";
+
+    /* 왼쪽 이미지 드래그 */
+
+    // categoryImages.forEach(img => {
+
+    //   img.addEventListener("dragstart", () => {
+
+    //     draggedSrc = img.src;
+
+    //   });
+
+    // });
+
+    document.addEventListener("dragstart", (e) => {
+
+      if (
+        e.target.matches(
+          ".category-item img"
+        )
+      ) {
+
+        draggedSrc =
+          e.target.src;
+
+      }
+
+    });
+
+    /* 캔버스 드롭 허용 */
+
+    centerContent.addEventListener("dragover", (e) => {
+
+      e.preventDefault();
+
+    });
+
+    /* 캔버스에 이미지 생성 */
+
+    centerContent.addEventListener("drop", (e) => {
+
+      e.preventDefault();
+
+      const rect =
+        centerContent.getBoundingClientRect();
+
+      const x =
+        e.clientX - rect.left;
+
+      const y =
+        e.clientY - rect.top;
+
+      const outfit =
+        document.createElement("img");
+
+      outfit.dataset.z = 1;
+
+      outfit.style.zIndex = 1;  
+
+      outfit.src = draggedSrc;
+
+      outfit.classList.add("outfit-item");
+
+      outfit.draggable = false;
+
+      outfit.style.left =
+        `${x - 90}px`;
+
+      outfit.style.top =
+        `${y - 90}px`;
+
+      centerContent.appendChild(outfit);
+
+      const currentLayer =
+        layers.find(
+          l =>
+            l.id ===
+            selectedLayerId
+        );
+
+      if (currentLayer) {
+
+        currentLayer.items.push(outfit);
+
+      }
+
+      makeDraggable(outfit);
+      makeSelectable(outfit);
+
+      renderLayers();
+
+    });
+
+    /* =========================
+      MOVE OUTFIT
+    ========================= */
+
+    function makeDraggable(item) {
+
+      let isDragging = false;
+
+      let offsetX = 0;
+      let offsetY = 0;
+
+      item.addEventListener("mousedown", (e) => {
+
+        isDragging = true;
+
+        offsetX =
+          e.clientX - item.offsetLeft;
+
+        offsetY =
+          e.clientY - item.offsetTop;
+
+      });
+
+      document.addEventListener("mousemove", (e) => {
+
+        if (!isDragging) return;
+
+        item.style.left =
+          `${e.clientX - offsetX}px`;
+
+        item.style.top =
+          `${e.clientY - offsetY}px`;
+
+      });
+
+      document.addEventListener("mouseup", () => {
+
+        isDragging = false;
+
+      });
+
+    }
+
+    function makeSelectable(item) {
+
+      item.dataset.scale = 1;
+      item.dataset.rotate = 0;
+
+      item.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        document
+          .querySelectorAll(".outfit-item")
+          .forEach(img =>
+            img.classList.remove("selected")
+          );
+
+        item.classList.add("selected");
+
+        selectedItem = item;
+
+        transformPanel.classList.remove("hidden");
+
+        const layer =
+          layers.find(
+            l => l.element === item
+          );
+
+        if (layer) {
+          selectedLayerId = layer.id;
+        }
+
+        renderLayers();
+      });
+
+    };
+
+    centerContent.addEventListener("click", () => {
+
+      selectedItem?.classList.remove("selected");
+
+      selectedItem = null;
+
+      transformPanel.classList.add("hidden");
+
+      selectedLayerId = null;
+      renderLayers();
+
+    });
+
+    scaleSlider.addEventListener("input", () => {
+
+      if (!selectedItem) return;
+
+      selectedItem.dataset.scale =
+        scaleSlider.value / 100;
+
+      updateTransform(selectedItem);
+
+    });
+
+
+    rotateSlider.addEventListener("input", () => {
+
+      if (!selectedItem) return;
+
+      let angle = Number(rotateSlider.value);
+
+      const snapAngles = [
+        -180,
+        -90,
+        0,
+        90,
+        180
+      ];
+
+      const snapDistance = 15;
+
+      for (const snap of snapAngles) {
+
+        if (Math.abs(angle - snap) <= snapDistance) {
+
+          angle = snap;
+
+          rotateSlider.value = snap;
+
+          break;
+        }
+      }
+
+      selectedItem.dataset.rotate = angle;
+
+      updateTransform(selectedItem);
+
+    });
+
+    resetBtn.addEventListener("click", () => {
+
+      if (!selectedItem) return;
+
+      selectedItem.dataset.scale = 1;
+      selectedItem.dataset.rotate = 0;
+
+      scaleSlider.value = 100;
+      rotateSlider.value = 0;
+
+      updateTransform(selectedItem);
+
+    });
+
+    // layerUpBtn.addEventListener("click", () => {
+
+    //   if (!selectedItem) return;
+
+    //   let z =
+    //     Number(selectedItem.dataset.z);
+
+    //   z++;
+
+    //   selectedItem.dataset.z = z;
+    //   selectedItem.style.zIndex = z;
+
+    // });
+
+    // layerDownBtn.addEventListener("click", () => {
+
+    //   if (!selectedItem) return;
+
+    //   let z =
+    //     Number(selectedItem.dataset.z);
+
+    //   z--;
+
+    //   if (z < 1) z = 1;
+
+    //   selectedItem.dataset.z = z;
+    //   selectedItem.style.zIndex = z;
+
+    // });
+
+    layerUpBtn.addEventListener("click", () => {
+
+      if (!selectedItem) return;
+
+      const outfits =
+        [...centerContent.querySelectorAll(".outfit-item")];
+
+      const currentIndex =
+        outfits.indexOf(selectedItem);
+
+      if (currentIndex === outfits.length - 1) return;
+
+      const nextItem =
+        outfits[currentIndex + 1];
+
+      const temp =
+        document.createComment("");
+
+      selectedItem.replaceWith(temp);
+
+      nextItem.replaceWith(selectedItem);
+
+      temp.replaceWith(nextItem);
+
+    });
+
+    layerDownBtn.addEventListener("click", () => {
+
+      if (!selectedItem) return;
+
+      const outfits =
+        [...centerContent.querySelectorAll(".outfit-item")];
+
+      const currentIndex =
+        outfits.indexOf(selectedItem);
+
+      if (currentIndex === 0) return;
+
+      const prevItem =
+        outfits[currentIndex - 1];
+
+      const temp =
+        document.createComment("");
+
+      selectedItem.replaceWith(temp);
+
+      prevItem.replaceWith(selectedItem);
+
+      temp.replaceWith(prevItem);
+
+    });
+
+    deleteBtn.addEventListener("click", () => {
+
+      if (!selectedItem) return;
+
+      selectedItem.classList.remove("selected");
+
+      selectedItem.remove();
+
+      selectedItem = null;
+
+      transformPanel.classList.add("hidden");
+
+    });
+
+    transformPanel.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+    });
+
+    function updateTransform(item) {
+
+      const scale =
+        Number(item.dataset.scale || 1);
+
+      const rotate =
+        Number(item.dataset.rotate || 0);
+
+      item.style.transform =
+        `scale(${scale}) rotate(${rotate}deg)`;
+
+    };
+
+    const addLayerBtn =
+      document.querySelector(
+        ".add-layer-btn"
+      );
+
+    addLayerBtn.addEventListener(
+      "click",
+      () => {
+
+        const layer = {
+          id: Date.now(),
+          name:
+            `Layer ${layers.length + 1}`,
+          visible: true,
+          items: []
+        };
+
+        layers.push(layer);
+
+        selectedLayerId =
+          layer.id;
+
+        renderLayers();
+
+      }
+    );
+
+
+    const outfitCanvas =
+      document.getElementById("outfitCanvas");
+
+
+
+
+
+    function renderLayers() {
+
+      const list =
+        document.getElementById(
+          "layersList"
+        );
+
+      list.innerHTML = "";
+
+      [...layers]
+        .reverse()
+        .forEach(layer => {
+
+          const row =
+            document.createElement("div");
+
+          row.className =
+            layer.id === selectedLayerId
+            ? "layer-item selected"
+            : "layer-item";
+
+          if (
+            layer.id ===
+            selectedLayerId
+          ) {
+            row.classList.add(
+              "selected"
+            );
+          }
+
+          row.innerHTML = `
+
+            <span>
+              ${layer.name}
+              (${layer.items.length})
+            </span>
+
+            <div class="layer-actions">
+
+              <button class="layer-eye">
+                ${layer.visible ? "👁" : "🚫"}
+              </button>
+
+              <button class="layer-delete">
+                ✕
+              </button>
+
+            </div>
+
+          `;
+
+          row.addEventListener(
+            "click",
+            () => {
+
+              selectedLayerId =
+                layer.id;
+
+              renderLayers();
+
+            }
+          );
+
+          const eye =
+            row.querySelector(
+              ".layer-eye"
+            );
+
+          eye.addEventListener(
+            "click",
+            (e) => {
+
+              e.stopPropagation();
+
+              layer.visible =
+                !layer.visible;
+
+              layer.items.forEach(
+                item => {
+
+                  item.style.display =
+                    layer.visible
+                    ? "block"
+                    : "none";
+
+                }
+              );
+
+              renderLayers();
+
+            }
+          );
+
+          const deleteBtn =
+            row.querySelector(
+              ".layer-delete"
+            );
+
+          deleteBtn.addEventListener(
+            "click",
+            (e) => {
+
+              e.stopPropagation();
+
+              // 마지막 레이어는 삭제 불가
+              if (layers.length === 1) {
+                alert(
+                  "At least one layer is required."
+                );
+                return;
+              }
+
+              // 레이어 안 이미지 삭제
+              layer.items.forEach(item => {
+                item.remove();
+              });
+
+              // 레이어 삭제
+              layers =
+                layers.filter(
+                  l => l.id !== layer.id
+                );
+
+              // 선택된 레이어 삭제 시
+              if (
+                selectedLayerId ===
+                layer.id
+              ) {
+
+                selectedLayerId =
+                  layers[0].id;
+
+              }
+
+              renderLayers();
+
+            }
+          );
+
+          list.appendChild(row);
+
+        });
+
+    };
+
+    renderLayers();
+
+
+function saveOutfit() {
+
+  const outfits =
+    JSON.parse(localStorage.getItem("outfitsData")) || [];
+
+  const checkedCategories =
+    [...document.querySelectorAll('input[name="category"]:checked')]
+      .map(cb => cb.nextElementSibling.textContent);
+
+  const outfit = {
+    id: Date.now(),
+
+    image: document.getElementById("previewImage").src,
+
+    name: document.getElementById("outfit-name").value,
+
+    memo: document.getElementById("outfit-memo").value,
+
+    category: checkedCategories,
+
+    tags: [...tags],
+
+    favorite: favBtn.classList.contains("active")
+  };
+
+  outfits.push(outfit);
+
+  localStorage.setItem(
+    "outfitsData",
+    JSON.stringify(outfits)
+  );
+}
+    </script>
+    <script src="theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+</body>
+</html>

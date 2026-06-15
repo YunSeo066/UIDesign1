@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OOTD in Web</title>
+  <script>if (localStorage.getItem("theme") === "dark") {document.documentElement.classList.add("dark-mode");}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <button class="sidebar-toggle" id="toggleBtn">☰</button>
+  
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      
+      <div class="sidebar-header">
+        <h2>menu</h2>
+        <button class="sidebar-closeBtn" id="closeBtn">×</button>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-header">
+          <span class="menu-group-toggle">clothes</span>
+          <span class="menu-group-viewall"><a href="closet.html">view all</a></span>
+        </div>
+        <ul class="menu-list">
+          <li><a href="cate.html?category=Category1">category1</a></li>
+          <li><a href="cate.html?category=Category2">category2</a></li>
+          <li><a href="cate.html?category=Category3">category3</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-header">
+          <span class="menu-group-toggle">outfits</span>
+          <span class="menu-group-viewall"><a href="outfits.html">view all</a></span>
+        </div>
+        <ul class="menu-list">
+          <li><a href="cate.html?type=outfits&category=Category1">category1</a></li>
+          <li><a href="cate.html?type=outfits&category=Category2">category2</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h1><a href="create.html">Create New Outfits</a></h1>
+          <span class="top-bar-save">Save</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-bar-upload">Upload</span>
+          <span class="user-name" id="userName"># User 4403</span>
+          <button class="ModeChange">
+            <img src="images/dark.png"/>
+          </button>
+        </div>
+      </header>
+
+      <section class="upload-panel">
+        <p class="upload-description">Drag and drop clothing images to upload</p>
+
+        <div class="upload-dropzone">
+          <div class="upload-icon">
+            <img src="images/upload_icon.png" alt="Upload Icon" />
+          </div>
+        </div>
+
+        <input type="file" id="fileInput" accept="image/png,image/jpeg" hidden>
+
+        <button class="upload-button" type="button">Select image from desktop</button>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+
+      <div class="modal-left">
+
+        <h2>Upload clothes</h2>
+
+        <div class="input-box">
+          <label for="clothes-name">Name</label>
+          <input id="clothes-name" type="text" placeholder="Enter clothing name" />
+        </div>
+
+        <div class="category-box">
+          <label for="clothes-category">Category</label>
+          <div class="btn-box">
+            <label>
+              <input type="checkbox" name="category" />
+              <span>New</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category1</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category2</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category3</span>
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" />
+              <span>Category4</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="tag-section">
+          <h3>Tag</h3>
+          <div class="tag-input-box">
+            <input
+              type="text"
+              id="tagInput"
+              placeholder="Enter tag and press Enter"
+            />
+          </div>
+          <div class="tag-list" id="tagList"></div>
+        </div>
+
+        <div class="input-box">
+          <label for="clothes-memo">Memo</label>
+          <input id="clothes-memo" type="text" placeholder="Enter memo" />
+        </div>
+
+        <div class="fav">
+          <label>
+            <button type="button" class="fav-btn" id="favBtn">★</button>
+            <span>Mark as Favorite</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-right">
+
+        <div class="image-box">
+          <img src="" id="modalImage" />
+        </div>
+
+        <div class="detail-btns">
+          <button id="cancelUploadBtn">Close</button>
+          <button id="closeModal">Upload</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <script>
+    const appShell = document.querySelector('.app-shell');
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const groups = document.querySelectorAll('.menu-group');
+
+    const openSidebar = () => {
+      sidebar.classList.add('open');
+      appShell.classList.add('sidebar-open');
+    };
+
+    const closeSidebar = () => {
+      sidebar.classList.remove('open');
+      appShell.classList.remove('sidebar-open');
+    };
+    
+    groups.forEach(group => {
+      const header = group.querySelector('.menu-group-header');
+      
+      header.addEventListener('click', () => {
+        group.classList.toggle('open');
+      });
+    });
+    
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      closeSidebar();
+    });
+
+    const dropzone = document.querySelector('.upload-dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const uploadBtn = document.querySelector('.upload-button');
+
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    const userName = document.getElementById('userName');
+
+    let currentImage = null;
+
+    function openModal(url) {
+      modalOverlay.classList.add('show');
+      modalImage.src = url;
+    };
+
+    function handleImage(file) {
+
+      if (!file || !file.type.startsWith("image/")) return;
+
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+
+        const imageData = e.target.result;
+
+        currentImage = imageData;
+
+        openModal(imageData);
+      };
+
+      reader.readAsDataURL(file);
+    };
+
+
+    uploadBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      handleImage(file);
+
+      // 🔥 중요: 같은 파일 다시 선택 가능하게
+      fileInput.value = "";
+    });
+
+    dropzone.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      dropzone.classList.add("dragover");
+    });
+    
+    dropzone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropzone.classList.add("dragover");
+    });
+    
+    dropzone.addEventListener("dragleave", (e) => {
+      dropzone.classList.remove("dragover");
+    });
+    
+    dropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropzone.classList.remove("dragover");
+      const file = e.dataTransfer.files[0];
+      if (!file) return;
+      handleImage(file);
+    });
+
+
+    closeModal.addEventListener('click', () => {
+
+      saveClothes();
+
+      resetForm();  
+
+      modalOverlay.classList.remove('show');
+
+    });
+
+    /* =========================
+      DELETE IMAGE
+    ========================= */
+
+    userName.addEventListener('click', () => {
+
+      if (!currentImage) return;
+
+      URL.revokeObjectURL(currentImage);
+      currentImage = null;
+
+      modalImage.src = "";
+    });
+
+
+    const cancelUploadBtn =
+  document.getElementById('cancelUploadBtn');
+
+cancelUploadBtn.addEventListener('click', () => {
+
+  currentImage = null;
+
+  resetForm();
+
+  modalImage.src = "";
+
+  modalOverlay.classList.remove('show');
+
+});
+
+    const tagInput = document.getElementById('tagInput');
+    const tagList = document.getElementById('tagList');
+
+    let tags = [];
+
+    /* 엔터 입력 */
+    tagInput.addEventListener('keydown', (e) => {
+
+      if (e.key !== 'Enter') return;
+
+      e.preventDefault();
+
+      const value = tagInput.value.trim();
+
+      if (!value) return;
+
+      // 중복 방지
+      if (tags.includes(value)) {
+        tagInput.value = '';
+        return;
+      }
+
+      tags.push(value);
+
+      renderTags();
+
+      tagInput.value = '';
+    });
+
+
+    /* 태그 렌더링 */
+    function renderTags() {
+
+      tagList.innerHTML = '';
+
+      tags.forEach(tag => {
+
+        const tagItem = document.createElement('div');
+        tagItem.className = 'tag-item';
+
+        tagItem.innerHTML = `
+          <span>${tag}</span>
+          <span class="tag-remove">✕</span>
+        `;
+
+        /* 삭제 */
+        tagItem.querySelector('.tag-remove')
+          .addEventListener('click', () => {
+
+            tags = tags.filter(t => t !== tag);
+
+            renderTags();
+          });
+
+        tagList.appendChild(tagItem);
+      });
+    }
+
+    const favBtn = document.getElementById('favBtn');
+
+    favBtn.addEventListener('click', () => {
+
+      favBtn.classList.toggle('active');
+
+    });
+
+
+    function saveClothes() {
+
+      if (!currentImage) return;
+
+      const checkedCategories =
+        [...document.querySelectorAll(
+          'input[name="category"]:checked'
+        )]
+        .map(cb =>
+          cb.nextElementSibling.textContent
+        );
+
+      const clothes = {
+        id: Date.now(),
+
+        image: currentImage,
+
+        name:
+          document.getElementById(
+            "clothes-name"
+          ).value,
+
+        memo:
+          document.getElementById(
+            "clothes-memo"
+          ).value,
+
+        category:
+          checkedCategories,
+
+        tags:
+          [...tags],
+
+        favorite:
+          favBtn.classList.contains("active")
+      };
+
+      const saved =
+        JSON.parse(
+          localStorage.getItem("clothesData")
+        ) || [];
+
+      saved.push(clothes);
+
+      localStorage.setItem(
+        "clothesData",
+        JSON.stringify(saved)
+      );
+    }
+
+
+function resetForm() {
+
+  document.getElementById("clothes-name").value = "";
+  document.getElementById("clothes-memo").value = "";
+
+  // 태그 초기화
+  tags = [];
+  renderTags();
+
+  // 즐겨찾기 해제
+  favBtn.classList.remove("active");
+
+  // 카테고리 체크 해제
+  document
+    .querySelectorAll('input[name="category"]')
+    .forEach(cb => cb.checked = false);
+
+  // 이미지 초기화
+  currentImage = null;
+  modalImage.src = "";
+}
+
+    console.log(
+      JSON.parse(
+        localStorage.getItem("clothesData")
+      )
+    );
+  </script>
+  <script src="theme.js"></script>
+</body>
+</html>
